@@ -55,10 +55,16 @@ function shouldFetchPosts(state, subreddit) {
   }
 }
 
+//thunk, since it returns a function
 export function fetchPostsIfNeeded(subreddit) {
   return (dispatch, getState) => {
     if (shouldFetchPosts(getState(), subreddit)) {
-      return dispatch(fetchPosts(subreddit))
+      return dispatch(fetchPosts(subreddit)).then(function(value) {
+        console.log(value);
+      });
+    } else {
+      // Let the calling code know there's nothing to wait for.
+      return Promise.resolve()
     }
   }
 }

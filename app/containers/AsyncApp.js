@@ -33,7 +33,13 @@ class AsyncApp extends Component {
 
     const { dispatch, selectedSubreddit } = this.props
     dispatch(invalidateSubreddit(selectedSubreddit))
-    dispatch(fetchPostsIfNeeded(selectedSubreddit))
+
+    //when a thunk is dispatchted, returned function of the thunk is executed
+    //synchronously.
+    dispatch(fetchPostsIfNeeded(selectedSubreddit)).then(function(value) {
+      //why this is not called?
+      console.log(value);
+    });
   }
 
   render() {
