@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-//import css from './index.css';
-import App from './components/app';
+import Root from './containers/Root'
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('app')
+  <Root />,
+  document.getElementById('root')
 );
+
+//import 'babel-polyfill'
